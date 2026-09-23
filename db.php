@@ -1,12 +1,13 @@
 <?php
-$host = '127.0.0.1';
-$dbName = 'campusmarket';
-$username = 'root';
-$password = '';
+$host = getenv('DB_HOST') ?: '127.0.0.1';
+$dbName = getenv('DB_NAME') ?: 'campusmarket';
+$username = getenv('DB_USER') ?: 'root';
+$password = getenv('DB_PASSWORD') ?: '';
+$port = getenv('DB_PORT') ?: '3306';
 
 try {
     $pdo = new PDO(
-        "mysql:host=$host;dbname=$dbName;charset=utf8mb4",
+        "mysql:host=$host;port=$port;dbname=$dbName;charset=utf8mb4",
         $username,
         $password,
         [

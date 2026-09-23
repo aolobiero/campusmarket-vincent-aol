@@ -1,0 +1,5 @@
+.git
+.gitignore
+uploads/*
+*.log
+.env
