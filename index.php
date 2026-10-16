@@ -398,7 +398,7 @@ function e(string $value): string
 		function applySearch() {
 			const term = searchInput.value.trim().toLowerCase();
 			let matches = 0;
-			const searchableCards = document.querySelectorAll('#product-grid .product-card, .quick-card, .listings-live .listing, .market-card');
+			const searchableCards = document.querySelectorAll('#product-grid .product-card, .quick-card, .market-card');
 			searchableCards.forEach(function (card) {
 				const match = !term || card.textContent.toLowerCase().includes(term);
 				card.classList.toggle('search-match-hidden', !match);

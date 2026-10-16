@@ -5,6 +5,8 @@ services:
     plan: free
     healthCheckPath: /index.php
     envVars:
+      - key: APP_ENV
+        value: production
       - key: DB_HOST
         sync: false
       - key: DB_PORT

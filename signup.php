@@ -18,8 +18,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $pdo instanceof PDO) {
         $query->execute(['phone' => $phone, 'code_hash' => password_hash($code, PASSWORD_DEFAULT)]);
         $_SESSION['verification_phone'] = $phone;
         $delivery = sendVerificationSms($phone, $code);
-        $verificationSent = true;
-        $message = $delivery['sent'] ? 'A verification code was sent to ' . $phone . '.' : 'Local mode: your verification code is ' . $code . '.';
+        if ($delivery['sent']) {
+            $verificationSent = true;
+            $message = 'A verification code was sent to ' . $phone . '.';
+        } elseif (getenv('APP_ENV') === 'production') {
+            $message = 'We could not send a verification code right now. Please try again shortly.';
+        } else {
+            $verificationSent = true;
+            $message = 'Local mode: your verification code is ' . $code . '.';
+        }
     } elseif ($action === 'verify_code') {
         $code = trim($_POST['code'] ?? '');
         $phone = $_SESSION['verification_phone'] ?? '';
