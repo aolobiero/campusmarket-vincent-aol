@@ -1,0 +1,51 @@
+<?php
+return [
+	[
+		'id' => 1,
+		'title' => 'Calculus & Physics Bundle',
+		'price' => 5850,
+		'category' => 'textbooks',
+		'condition' => 'Gently Used',
+		'image_url' => 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1000&q=85',
+	],
+	[
+		'id' => 2,
+		'title' => 'Compact Study Desk',
+		'price' => 6500,
+		'category' => 'furniture',
+		'condition' => 'Good Condition',
+		'image_url' => 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=85',
+	],
+	[
+		'id' => 3,
+		'title' => 'Classic Denim Jacket',
+		'price' => 2750,
+		'category' => 'fashion',
+		'condition' => 'Like New',
+		'image_url' => 'https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=1000&q=85',
+	],
+	[
+		'id' => 4,
+		'title' => 'Noise-Cancelling Headphones',
+		'price' => 4200,
+		'category' => 'electronics',
+		'condition' => 'Barely Used',
+		'image_url' => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1000&q=85',
+	],
+	[
+		'id' => 5,
+		'title' => 'Samsung Galaxy A54',
+		'price' => 24500,
+		'category' => 'phone-gadgets',
+		'condition' => 'Good Condition',
+		'image_url' => 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=85',
+	],
+	[
+		'id' => 6,
+		'title' => 'USB-C Campus Power Bank',
+		'price' => 3200,
+		'category' => 'electronics',
+		'condition' => 'Brand New',
+		'image_url' => 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=1000&q=85',
+	],
+];

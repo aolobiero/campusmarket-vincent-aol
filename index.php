@@ -1,56 +1,7 @@
 <?php
 require_once __DIR__ . '/db.php';
 
-$products = [
-	[
-		'id' => 1,
-		'title' => 'Calculus & Physics Bundle',
-		'price' => 5850,
-		'category' => 'textbooks',
-		'condition' => 'Gently Used',
-		'placeholder_image' => 'assets/product-textbooks.jpg',
-	],
-	[
-		'id' => 2,
-		'title' => 'Compact Study Desk',
-		'price' => 6500,
-		'category' => 'furniture',
-		'condition' => 'Good Condition',
-		'placeholder_image' => 'assets/product-furniture.jpg',
-	],
-	[
-		'id' => 3,
-		'title' => 'Classic Denim Jacket',
-		'price' => 2750,
-		'category' => 'fashion',
-		'condition' => 'Like New',
-		'placeholder_image' => 'assets/product-fashion.jpg',
-	],
-	[
-		'id' => 4,
-		'title' => 'Noise-Cancelling Headphones',
-		'price' => 4200,
-		'category' => 'electronics',
-		'condition' => 'Barely Used',
-		'placeholder_image' => 'assets/product-electronics.jpg',
-	],
-	[
-		'id' => 5,
-		'title' => 'Samsung Galaxy A54',
-		'price' => 24500,
-		'category' => 'phone-gadgets',
-		'condition' => 'Good Condition',
-		'placeholder_image' => 'assets/product-phone.jpg',
-	],
-	[
-		'id' => 6,
-		'title' => 'USB-C Campus Power Bank',
-		'price' => 3200,
-		'category' => 'electronics',
-		'condition' => 'Brand New',
-		'placeholder_image' => 'assets/product-power-bank.jpg',
-	],
-];
+$products = require __DIR__ . '/sample-products.php';
 
 $searchTerm = trim($_GET['q'] ?? '');
 $categoryFilter = trim($_GET['category'] ?? '');
@@ -102,7 +53,7 @@ function e(string $value): string
 	<title>CampusMarket | Your campus, your marketplace</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 	<style>
 		:root{--ink:#142b38;--muted:#60727a;--paper:#f7faf8;--white:#fff;--line:#dce7e3;--teal:#087f78;--teal-dark:#075b59;--coral:#f07c63;--shadow:0 18px 45px rgba(20,43,56,.1)}
 		*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--paper);font-family:"DM Sans",sans-serif;line-height:1.5}a{color:inherit;text-decoration:none}button,input{font:inherit}.container{width:min(1160px,calc(100% - 40px));margin:auto}
@@ -123,6 +74,16 @@ function e(string $value): string
 		.product-filter-section{padding-top:0;background:var(--paper)}.product-filter-nav{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 24px;padding:5px 0}.product-filter-button{padding:10px 16px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:#fff;cursor:pointer;font-size:.82rem;font-weight:700;transition:background .2s,color .2s,transform .2s}.product-filter-button:hover{color:var(--teal);border-color:#9bcfc1;transform:translateY(-1px)}.product-filter-button.is-active{color:#fff;background:var(--teal);border-color:var(--teal)}.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.product-card{overflow:hidden;border:1px solid var(--line);border-radius:10px;background:#fff;box-shadow:0 8px 24px rgba(20,43,56,.05);transition:opacity .2s,transform .2s,box-shadow .2s}.product-card.is-hidden{display:none}.product-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.product-placeholder{display:grid;place-items:center;height:150px;color:var(--teal-dark);background:#e7f3ee;font-size:2rem}.product-card:nth-child(2) .product-placeholder{background:#fff0da}.product-card:nth-child(3) .product-placeholder{background:#ffe3dc}.product-card:nth-child(4) .product-placeholder{background:#e4edf8}.product-card:nth-child(5) .product-placeholder{background:#f0e7f5}.product-card:nth-child(6) .product-placeholder{background:#e7f3ee}.product-content{padding:16px}.product-content h3{margin:0 0 12px;font-size:1rem;letter-spacing:-.025em}.product-price{display:block;margin-bottom:12px;color:var(--teal);font-family:"Space Grotesk",sans-serif;font-size:1.1rem;font-weight:700}.condition-badge{display:inline-flex;padding:5px 8px;border-radius:4px;color:var(--teal-dark);background:#e7f3ee;font-size:.68rem;font-weight:700}@media(max-width:900px){.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:650px){.product-filter-nav{overflow-x:auto;flex-wrap:nowrap;padding-bottom:9px}.product-filter-button{flex:0 0 auto}.product-grid{grid-template-columns:1fr 1fr}}@media(max-width:420px){.product-grid{grid-template-columns:1fr}}
 		.quick-catalog{background:#f7faf8}.quick-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.quick-card{overflow:hidden;border:1px solid var(--line);border-radius:9px;background:#fff;transition:transform .2s,box-shadow .2s}.quick-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.quick-card[hidden]{display:none}.quick-image{display:grid;place-items:center;height:105px;color:var(--teal-dark);background:#e7f3ee;font-size:2rem}.quick-card:nth-child(2) .quick-image{background:#fff0da}.quick-card:nth-child(3) .quick-image{background:#ffe3dc}.quick-card:nth-child(4) .quick-image{background:#e4edf8}.quick-card:nth-child(5) .quick-image{background:#f0e7f5}.quick-card h3{margin:14px 13px 6px;font-size:.9rem;letter-spacing:-.025em}.quick-card strong{display:block;margin:0 13px 15px;color:var(--teal);font-family:"Space Grotesk",sans-serif;font-size:.9rem}.quick-filter{padding:9px 16px;border:1px solid var(--line);border-radius:6px;color:var(--teal);background:#fff;cursor:pointer;font-weight:700}.quick-filter.active{color:#fff;background:var(--teal);border-color:var(--teal)}.category-filter.active{outline:3px solid rgba(8,127,120,.2);border-color:var(--teal)}
 		.skip-link{position:absolute;top:-50px;left:16px;z-index:20;padding:10px 14px;border-radius:6px;color:#fff;background:var(--ink);font-weight:700}.skip-link:focus,.skip-link:focus-visible{top:16px}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #f5c95d;outline-offset:3px}
+		.product-photo{display:block;width:100%;height:150px;object-fit:cover;background:#e7f3ee}.quick-image{padding:0;overflow:hidden}.quick-image img{display:block;width:100%;height:100%;object-fit:cover}.hero{background-image:url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=2000&q=85")}
+		:root{--ink:#1E1E24;--muted:#666873;--paper:#F9F9FB;--white:#fff;--line:rgba(0,0,0,.06);--teal:#005F55;--teal-dark:#004a43;--coral:#E65F2B;--shadow:0 4px 20px -2px rgba(0,0,0,.07);--olive:#4E6E58}
+		body{color:var(--ink);background:var(--paper);font-family:"DM Sans",sans-serif}h1,h2,h3,.brand,.float-card strong{font-family:"Plus Jakarta Sans",sans-serif;letter-spacing:0}
+		header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.84);border-bottom:1px solid rgba(0,0,0,.05);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}.nav{display:grid;grid-template-columns:auto auto minmax(220px,1fr) auto;gap:24px}.nav-links{margin-right:0}.nav-search{display:flex;min-width:0;gap:8px;align-items:center;padding:5px 6px 5px 14px;border:1px solid rgba(0,0,0,.07);border-radius:12px;background:#fff;box-shadow:0 4px 20px -2px rgba(0,0,0,.05)}.nav-search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink)}.nav-search button{flex:none;padding:9px 15px}
+		.button,.add-cart,.filter-submit{border-radius:12px;background:var(--coral);box-shadow:0 5px 14px rgba(230,95,43,.2)}.button:hover,.add-cart:hover,.filter-submit:hover{background:#cf4f20}.sell-link{display:inline-flex;align-items:center;justify-content:center;padding:10px 15px;border:1px solid var(--coral);border-radius:12px;color:var(--coral)}.nav-actions{gap:10px}.hero{background-color:#eef2ee}.hero .button{background:var(--coral)}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}.hero-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:12px;font-weight:700}.hero-actions .browse-market{border:1px solid rgba(255,255,255,.7);color:#fff;background:rgba(255,255,255,.08)}.hero-actions .list-product{color:#fff;background:var(--coral)}
+		.category,.listing,.product-card,.quick-card{border:1px solid rgba(0,0,0,.05);border-radius:12px;box-shadow:var(--shadow)}.category{padding:24px}.product-card,.quick-card{overflow:hidden}.product-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}.product-photo,.quick-image{height:auto;aspect-ratio:4/3}.quick-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}.quick-card h3,.product-content h3,.listing-body h3{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;min-height:2.2em}.product-content{padding:20px}.product-price,.price{color:var(--ink);font-weight:800}.condition-badge,.verified-badge{border-radius:999px;color:var(--olive);background:#e8efe9;font-size:.72rem;font-weight:700}.verified-badge{display:inline-flex;align-items:center;gap:5px;margin:0 0 12px;padding:5px 9px}.verified-badge:before{content:"✓"}.listing .verified{color:var(--olive)}.listing-image{aspect-ratio:4/3;height:auto}.save{border-radius:10px}.product-image-link,.listing-image>a{display:block;height:100%}.product-title-link,.listing-title-link,.quick-title-link{color:inherit}.product-title-link:hover,.listing-title-link:hover,.quick-title-link:hover{color:var(--teal)}
+		.mobile-actions{display:none}@media(max-width:1000px){.nav{grid-template-columns:auto minmax(200px,1fr) auto;gap:16px}.nav-links{display:none}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.listing-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+		@media(max-width:650px){.container{width:calc(100% - 28px)}.nav{grid-template-columns:1fr auto;min-height:64px;gap:8px}.nav-search{display:none}.nav-actions .sell-link,.nav-actions .button{display:none}.nav-actions{gap:12px}.hero-actions{margin-top:22px}.product-grid,.quick-grid,.listing-grid{grid-template-columns:1fr;gap:16px}.product-photo,.quick-image{aspect-ratio:16/10}.product-content{padding:18px}.listing-image{aspect-ratio:16/10}.mobile-actions{position:fixed;right:0;bottom:0;left:0;z-index:30;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));border-top:1px solid rgba(0,0,0,.07);background:rgba(255,255,255,.92);backdrop-filter:blur(10px);box-shadow:0 -4px 20px rgba(0,0,0,.06)}.mobile-actions a{display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:12px;font-weight:700}.mobile-actions .mobile-browse{border:1px solid var(--teal);color:var(--teal)}.mobile-actions .mobile-sell{color:#fff;background:var(--coral)}body{padding-bottom:74px}}
+		.product-photo,.quick-image img,.listing-image img{object-fit:contain;background:#f1f3f2}.product-image-link,.quick-image>a,.listing-image>a{background:#f1f3f2}.product-image-link{height:auto}
+		.market-feed{display:block;padding:48px 0 64px;background:#F9F9FB}.market-feed-inner{width:min(1280px,calc(100% - 32px));margin:0 auto}.market-feed-header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px}.market-eyebrow{color:#E65F2B;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.market-feed-header h2{margin:5px 0 0;color:#1E1E24;font-family:"Plus Jakarta Sans",sans-serif;font-size:2rem;letter-spacing:0}.market-filters{display:flex;gap:8px;overflow-x:auto;padding:2px 0 6px}.market-filter{flex:none;padding:9px 16px;border:1px solid #eeeef1;border-radius:999px;color:#1E1E24;background:#fff;cursor:pointer;font-size:.82rem;font-weight:600}.market-filter:hover{background:#f5f5f7}.market-filter.is-active{border-color:#E65F2B;color:#fff;background:#E65F2B;box-shadow:0 4px 12px rgba(230,95,43,.16)}.market-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}.market-card{display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid #efeff1;border-radius:16px;background:#fff;box-shadow:0 4px 20px -4px rgba(0,0,0,.05);transition:transform .2s,box-shadow .2s}.market-card:hover{transform:translateY(-3px);box-shadow:0 10px 30px -5px rgba(0,0,0,.1)}.market-card[hidden]{display:none}.market-card-image{position:relative;aspect-ratio:1/1;overflow:hidden;background:#f1f3f2}.market-card-image>a,.market-card-image img{display:block;width:100%;height:100%}.market-card-image img{object-fit:contain;transition:transform .4s}.market-card:hover .market-card-image img{transform:scale(1.03)}.market-condition,.market-verified{position:absolute;top:12px;padding:5px 9px;border-radius:999px;font-size:.68rem;font-weight:700}.market-condition{left:12px;color:#1E1E24;background:rgba(255,255,255,.92);backdrop-filter:blur(8px)}.market-verified{right:12px;border-radius:6px;color:#fff;background:#4E6E58;font-size:.62rem}.market-card-content{display:flex;flex:1;flex-direction:column;justify-content:space-between;padding:16px}.market-location{margin:0 0 5px;color:#888992;font-size:.72rem;font-weight:600}.market-card h3{display:-webkit-box;overflow:hidden;min-height:2.5em;margin:0;color:#1E1E24;font-family:"Plus Jakarta Sans",sans-serif;font-size:.96rem;line-height:1.3;-webkit-box-orient:vertical;-webkit-line-clamp:2}.market-card h3 a:hover{color:#E65F2B}.market-card-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;margin-top:17px;padding-top:12px;border-top:1px solid #f1f1f3}.market-price-label{display:block;color:#898a93;font-size:.68rem;font-weight:600}.market-price{display:block;color:#1E1E24;font-family:"Plus Jakarta Sans",sans-serif;font-size:1.05rem;font-weight:800;white-space:nowrap}.market-details{padding:9px 12px;border-radius:10px;color:#fff;background:#005F55;font-size:.72rem;font-weight:700;white-space:nowrap}.market-details:hover{background:#00463E}.market-card .add-cart{margin-top:10px}@media(max-width:960px){.market-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:700px){.market-feed{padding:36px 0 52px}.market-feed-header{align-items:flex-start;flex-direction:column;gap:14px}.market-feed-header h2{font-size:1.65rem}.market-filters{width:100%}.market-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.market-card-content{padding:12px}.market-card-bottom{align-items:flex-start;flex-direction:column}.market-details{width:100%;text-align:center}}@media(max-width:440px){.market-grid{grid-template-columns:1fr}.market-card-image{aspect-ratio:4/3}}
 	</style>
 </head>
 <body>
@@ -130,15 +91,53 @@ function e(string $value): string
 	<div class="topbar"><div class="container"><span>Built for students, by students</span><span>New here? <a href="#how-it-works">See how it works</a></span></div></div>
 	<header><nav class="container nav" aria-label="Main navigation"><a class="brand" href="index.php"><span class="brand-mark">M</span> CampusMarket</a><div class="nav-links"><a href="#browse">Browse</a><a href="#how-it-works">How it works</a><a href="#about">About us</a></div><div class="nav-actions"><a class="cart-link" href="cart.php">Cart <span class="cart-badge" id="cart-count">0</span></a><a class="sell-link" href="signup.php?next=sell">Sell an item</a><a class="button" href="signup.php?next=account">Join free</a></div></nav></header>
 	<main id="main-content">
-		<section class="hero"><div class="container hero-grid"><div><span class="eyebrow">The student marketplace</span><h1>Make room for what matters next.</h1><p class="hero-copy">Find useful things nearby, give your old gear a second life, and keep more money in your pocket.</p><form class="search" action="index.php#listings" method="get" role="search"><input type="search" name="q" value="<?= e($searchTerm) ?>" aria-label="Search listings" placeholder="Search textbooks, bikes, furniture..."><button class="button" type="submit">Search</button></form></div><div class="hero-art" aria-label="Shoppers browsing CampusMarket"><div class="hero-photo"><img src="assets/hero-shopping.jpg" alt="Shoppers carrying colorful bags together"></div><div class="float-card"><div class="avatar-stack"><span>AJ</span><span>KM</span><span>+</span></div><div><strong>12,000+ users</strong><span>are already buying local</span></div></div></div></div></section>
+		<section class="hero"><div class="container hero-grid"><div><span class="eyebrow">The student marketplace</span><h1>Make room for what matters next.</h1><p class="hero-copy">Find useful things nearby, give your old gear a second life, and keep more money in your pocket.</p><form class="search" action="index.php#listings" method="get" role="search"><input type="search" name="q" value="<?= e($searchTerm) ?>" aria-label="Search listings" placeholder="Search textbooks, bikes, furniture..."><button class="button" type="submit">Search</button></form></div>
+		<div class="hero-art" aria-label="Shoppers browsing CampusMarket"><div class="hero-photo"><img src="assets/hero-shopping.jpg" alt="Shoppers carrying colorful bags together"></div>
+		<div class="float-card"><div class="avatar-stack"><span>AJ</span><span>KM</span><span>+</span></div>
+		<div><strong>12,000+ users</strong><span>are already buying local</span></div></div></div></div></section>
 		<section class="section" id="browse"><div class="container"><div class="section-heading"><div><span class="eyebrow">Explore campus finds</span><h2>What are you looking for?</h2></div><a href="#category-directory">View all categories &rarr;</a></div><div class="category-grid" id="category-directory"><a class="category" href="index.php?category=Textbooks#listings"><span class="category-icon">&#9878;</span><strong>Textbooks</strong><small>Save on your next semester</small></a><a class="category" href="index.php?category=Furniture#listings"><span class="category-icon">&#9733;</span><strong>Furniture</strong><small>Make your space yours</small></a><a class="category" href="index.php?category=Fashion#listings"><span class="category-icon">&#9829;</span><strong>Fashion</strong><small>Good style, better prices</small></a><a class="category" href="index.php?category=Electronics#listings"><span class="category-icon">&#9673;</span><strong>Electronics</strong><small>Find useful campus tech</small></a><a class="category" href="index.php?category=Phones+%26+gadgets#listings"><span class="category-icon">&#9742;</span><strong>Phones &amp; gadgets</strong><small>Stay connected for less</small></a><a class="category" href="index.php?category=Transport#listings"><span class="category-icon">&#9736;</span><strong>Transport</strong><small>Get moving around campus</small></a></div></div></section>
 		<section class="section listings" id="listings"><div class="container"><div class="section-heading"><div><span class="eyebrow">Fresh this week</span><h2>Popular near you</h2></div><a href="#browse">See all listings &rarr;</a></div><div class="catalog-toolbar"><span><strong>128 items</strong> available on campus</span><div class="filter-links"><a href="#listings">All items</a><a href="#listings">Newest</a><a href="#listings">Under KSh 5,000</a></div></div><div class="listing-grid"><article class="listing"><div class="listing-image"><span class="tag">Like new</span><button class="save" type="button" aria-label="Save calculus and physics bundle">&#9825;</button><img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=700&q=80" alt="Stack of university textbooks"></div><div class="listing-body"><h3>Calculus &amp; Physics bundle</h3><div class="listing-meta"><span>Engineering</span><span>0.4 mi</span></div><div class="seller"><span class="seller-avatar">NM</span> Nadia M. <span class="verified">&#10003; Verified</span></div><div class="listing-bottom"><div class="price">KSh 5,850 <span>for 3 books</span></div><a class="view-button" href="#listings">View item</a></div></div></article><article class="listing"><div class="listing-image"><span class="tag">Pickup today</span><button class="save" type="button" aria-label="Save olive reading chair">&#9825;</button><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=700&q=80" alt="Comfortable green lounge chair"></div><div class="listing-body"><h3>Olive reading chair</h3><div class="listing-meta"><span>Home &amp; room</span><span>0.8 mi</span></div><div class="seller"><span class="seller-avatar">DK</span> David K. <span class="verified">&#10003; Verified</span></div><div class="listing-bottom"><div class="price">KSh 7,800 <span>negotiable</span></div><a class="view-button" href="#listings">View item</a></div></div></article><article class="listing"><div class="listing-image"><span class="tag">Verified seller</span><button class="save" type="button" aria-label="Save city commuter bike">&#9825;</button><img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=700&q=80" alt="Black bicycle parked outdoors"></div><div class="listing-body"><h3>City commuter bike</h3><div class="listing-meta"><span>Transport</span><span>1.2 mi</span></div><div class="seller"><span class="seller-avatar">JO</span> Joseph O. <span class="verified">&#10003; Verified</span></div><div class="listing-bottom"><div class="price">KSh 23,500 <span>excellent condition</span></div><a class="view-button" href="#listings">View item</a></div></div></article><article class="listing"><div class="listing-image"><span class="tag">Popular</span><button class="save" type="button" aria-label="Save noise cancelling headphones">&#9825;</button><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80" alt="White wireless headphones on a table"></div><div class="listing-body"><h3>Noise-cancelling headphones</h3><div class="listing-meta"><span>Electronics</span><span>0.6 mi</span></div><div class="seller"><span class="seller-avatar">AW</span> Amina W. <span class="verified">&#10003; Verified</span></div><div class="listing-bottom"><div class="price">KSh 4,200 <span>barely used</span></div><a class="view-button" href="#listings">View item</a></div></div></article><article class="listing"><div class="listing-image"><span class="tag">Good condition</span><button class="save" type="button" aria-label="Save study desk">&#9825;</button><img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6b7?auto=format&fit=crop&w=700&q=80" alt="Wooden study desk with a lamp"></div><div class="listing-body"><h3>Compact study desk</h3><div class="listing-meta"><span>Home &amp; room</span><span>1.5 mi</span></div><div class="seller"><span class="seller-avatar">BM</span> Brian M. <span class="verified">&#10003; Verified</span></div><div class="listing-bottom"><div class="price">KSh 6,500 <span>pickup only</span></div><a class="view-button" href="#listings">View item</a></div></div></article><article class="listing"><div class="listing-image"><span class="tag">New arrival</span><button class="save" type="button" aria-label="Save denim jacket">&#9825;</button><img src="https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=700&q=80" alt="Blue denim jacket hanging on a rack"></div><div class="listing-body"><h3>Classic denim jacket</h3><div class="listing-meta"><span>Fashion</span><span>0.9 mi</span></div><div class="seller"><span class="seller-avatar">SN</span> Sarah N. <span class="verified">&#10003; Verified</span></div><div class="listing-bottom"><div class="price">KSh 2,750 <span>size medium</span></div><a class="view-button" href="#listings">View item</a></div></div></article></div></div></section>
 		<section class="section listings-live" id="listings"><div class="container"><div class="section-heading"><div><span class="eyebrow">Live campus catalog</span><h2><?= $searchTerm !== '' ? 'Search results' : 'Popular near you' ?></h2></div><a href="index.php#browse">Browse categories &rarr;</a></div><?php if (!$catalogReady): ?><div class="catalog-toolbar"><span><strong>Database not connected.</strong> Import <a href="database.sql">database.sql</a> into XAMPP MySQL to load listings.</span></div><?php elseif (count($listings) === 0): ?><div class="catalog-toolbar"><span><strong>No listings found.</strong> Try another search or category.</span><a href="index.php#listings">Clear filters</a></div><?php else: ?><div class="catalog-toolbar"><span><strong><?= count($listings) ?> items</strong> available on campus</span><div class="filter-links"><a href="index.php#listings">All items</a><a href="index.php?category=Home+%26+room#listings">Home</a><a href="index.php?category=Fashion#listings">Fashion</a></div></div><div class="listing-grid"><?php foreach ($listings as $listing): ?><article class="listing"><div class="listing-image"><span class="tag"><?= e($listing['status_label']) ?></span><button class="save" type="button" aria-label="Save <?= e($listing['title']) ?>" data-title="<?= e($listing['title']) ?>">&#9825;</button><img src="<?= e($listing['image_url']) ?>" alt="<?= e($listing['title']) ?>"></div><div class="listing-body"><h3><?= e($listing['title']) ?></h3><div class="listing-meta"><span><?= e($listing['category']) ?></span><span><?= e($listing['distance_label']) ?></span></div><div class="seller"><span class="seller-avatar"><?= e($listing['seller_initials']) ?></span> <?= e($listing['seller_name']) ?> <?php if ($listing['is_verified']): ?><span class="verified">&#10003; Verified</span><?php endif; ?></div><div class="listing-bottom"><div class="price">KSh <?= number_format((float) $listing['price']) ?> <span><?= e($listing['detail_label']) ?></span></div><button class="view-button view-item" type="button" data-title="<?= e($listing['title']) ?>">View item</button></div></div></article><?php endforeach; ?></div><?php endif; ?></div></section>
 		<section class="trust" id="how-it-works"><div class="container trust-grid"><div class="trust-item"><b>1</b><div><strong>List in a minute</strong><p>Snap a photo, set your price, and reach people on your campus.</p></div></div><div class="trust-item"><b>2</b><div><strong>Meet with confidence</strong><p>Chat safely and choose a public campus pickup spot.</p></div></div><div class="trust-item"><b>3</b><div><strong>Keep it circular</strong><p>Save cash, reduce waste, and pass good things forward.</p></div></div></div></section>
-		<section class="product-filter-section section" id="student-products" aria-labelledby="student-products-title"><div class="container"><div class="section-heading"><div><span class="eyebrow">Student picks</span><h2 id="student-products-title">Browse by category</h2></div><span class="catalog-count"><?= count($products) ?> sample listings</span></div><nav class="product-filter-nav" aria-label="Filter products by category"><button class="product-filter-button is-active" type="button" data-target="all">All</button><button class="product-filter-button" type="button" data-target="textbooks">Textbooks</button><button class="product-filter-button" type="button" data-target="furniture">Furniture</button><button class="product-filter-button" type="button" data-target="fashion">Fashion</button><button class="product-filter-button" type="button" data-target="electronics">Electronics</button><button class="product-filter-button" type="button" data-target="phone-gadgets">Phone &amp; Gadgets</button></nav><div class="product-grid" id="product-grid" aria-live="polite"><?php foreach ($products as $product): ?><article class="product-card" data-category="<?= e($product['category']) ?>"><div class="product-placeholder" role="img" aria-label="Placeholder image for <?= e($product['title']) ?>">&#128230;</div><div class="product-content"><h3><?= e($product['title']) ?></h3><strong class="product-price">KSh <?= number_format((float) $product['price']) ?></strong><span class="condition-badge"><?= e($product['condition']) ?></span></div></article><?php endforeach; ?></div></div></section>
+		<section class="product-filter-section section" id="student-products" aria-labelledby="student-products-title"><div class="container"><div class="section-heading"><div><span class="eyebrow">Student picks</span><h2 id="student-products-title">Browse by category</h2></div><span class="catalog-count"><?= count($products) ?> sample listings</span></div><nav class="product-filter-nav" aria-label="Filter products by category"><button class="product-filter-button is-active" type="button" data-target="all">All</button><button class="product-filter-button" type="button" data-target="textbooks">Textbooks</button><button class="product-filter-button" type="button" data-target="furniture">Furniture</button><button class="product-filter-button" type="button" data-target="fashion">Fashion</button><button class="product-filter-button" type="button" data-target="electronics">Electronics</button><button class="product-filter-button" type="button" data-target="phone-gadgets">Phone &amp; Gadgets</button></nav><div class="product-grid" id="product-grid" aria-live="polite"><?php foreach ($products as $product): ?><article class="product-card" data-category="<?= e($product['category']) ?>"><div class="product-placeholder" role="img" aria-label="Placeholder image for <?= e($product['title']) ?>">&#128230;</div><div class="product-content"><h3><?= e($product['title']) ?></h3><strong class="product-price">KSh <?= number_format((float) $product['price']) ?></strong><span class="condition-badge"><?= e($product['condition']) ?></span><button class="add-cart" type="button" data-id="product-<?= (int) $product['id'] ?>" data-title="<?= e($product['title']) ?>" data-price="<?= (float) $product['price'] ?>" data-category="<?= e($product['category']) ?>">Add to cart</button></div></article><?php endforeach; ?></div></div></section>
 	</main>
 	<footer id="about"><div class="container footer-row"><a class="brand" href="index.php"><span class="brand-mark">M</span> CampusMarket</a><div class="footer-links"><a href="#about">About</a><a href="#how-it-works">Safety</a><a href="#about">Contact</a><a href="https://www.facebook.com/vincent.mentelilo" target="_blank" rel="noopener" aria-label="CampusMarket on Facebook" title="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.7.3-1 1-1Z"/></svg></a><a href="https://www.instagram.com/accounts/edit/" target="_blank" rel="noopener" aria-label="CampusMarket on Instagram" title="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor" stroke="none"/></svg></a></div><small>&copy; 2026 CampusMarket</small></div></footer>
 <script>
+	const mainNav = document.querySelector('.nav');
+	if (mainNav) {
+		const navSearch = document.createElement('form');
+		navSearch.className = 'nav-search';
+		navSearch.action = 'index.php#listings';
+		navSearch.method = 'get';
+		navSearch.setAttribute('role', 'search');
+		navSearch.innerHTML = '<input type="search" name="q" list="market-suggestions" aria-label="Search the marketplace" placeholder="Search books, bikes, furniture..." autocomplete="off"><datalist id="market-suggestions"><option value="Textbooks"><option value="Furniture"><option value="Fashion"><option value="Electronics"><option value="Phones"><option value="Transport"></datalist><button class="button" type="submit" aria-label="Search">Search</button>';
+		const navQuery = new URLSearchParams(window.location.search).get('q');
+		if (navQuery) navSearch.querySelector('input').value = navQuery;
+		mainNav.querySelector('.nav-actions').before(navSearch);
+	}
+	const heroSearch = document.querySelector('.hero .search');
+	if (heroSearch) {
+		const heroActions = document.createElement('div');
+		heroActions.className = 'hero-actions';
+		heroActions.innerHTML = '<a class="browse-market" href="#student-products">Browse market</a><a class="list-product" href="signup.php?next=sell">List a product</a>';
+		heroSearch.before(heroActions);
+	}
+	const mobileActions = document.createElement('nav');
+	mobileActions.className = 'mobile-actions';
+	mobileActions.setAttribute('aria-label', 'Quick actions');
+	mobileActions.innerHTML = '<a class="mobile-browse" href="#student-products">Browse market</a><a class="mobile-sell" href="signup.php?next=sell">List a product</a>';
+	const pageFooter = document.querySelector('footer');
+	if (pageFooter) pageFooter.before(mobileActions);
+	document.querySelectorAll('.product-card').forEach(function (card) {
+		const badge = document.createElement('span');
+		badge.className = 'verified-badge';
+		badge.textContent = 'Campus pick';
+		card.querySelector('.product-content').insertBefore(badge, card.querySelector('.product-content h3'));
+	});
+	document.querySelectorAll('.listings-live .verified').forEach(function (badge) {
+		badge.textContent = 'Verified Student';
+		badge.classList.add('verified-badge');
+	});
 	document.querySelectorAll('.save').forEach(function (button) {
 		button.addEventListener('click', function () {
 			button.classList.toggle('saved');
@@ -160,6 +159,116 @@ function e(string $value): string
 	const cartKey = 'campusmarket-cart';
 	function readCart() { return JSON.parse(localStorage.getItem(cartKey) || '[]'); }
 	function updateCartCount() { const count = readCart().length; const badge = document.getElementById('cart-count'); if (badge) badge.textContent = count; }
+	const legacyListingSections = document.querySelectorAll('main > .listings, main > .listings-live');
+	legacyListingSections.forEach(function (section, index) { section.hidden = true; section.removeAttribute('id'); section.id = 'legacy-listings-' + index; });
+	const marketFeed = document.createElement('section');
+	marketFeed.id = 'listings';
+	marketFeed.className = 'market-feed';
+	marketFeed.setAttribute('aria-labelledby', 'listings-title');
+	const marketFeedInner = document.createElement('div');
+	marketFeedInner.className = 'market-feed-inner';
+	const marketFeedHeader = document.createElement('div');
+	marketFeedHeader.className = 'market-feed-header';
+	marketFeedHeader.innerHTML = '<div><span class="market-eyebrow">Campus Feed</span><h2 id="listings-title"><?= $searchTerm !== '' ? 'Search results' : 'Recently Listed Items' ?></h2></div><nav class="market-filters" aria-label="Filter listings"><button class="market-filter is-active" type="button" data-market-filter="all">All Items</button><button class="market-filter" type="button" data-market-filter="electronics">Electronics</button><button class="market-filter" type="button" data-market-filter="books">Books &amp; Study</button><button class="market-filter" type="button" data-market-filter="hostel">Hostel Shared</button></nav>';
+	marketFeedInner.appendChild(marketFeedHeader);
+	const marketListings = <?= json_encode($listings, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) ?>;
+	if (!marketListings.length) {
+		const emptyState = document.createElement('div');
+		emptyState.className = 'catalog-toolbar';
+		emptyState.textContent = <?= json_encode($catalogReady ? 'No listings found. Try another search or category.' : 'Database not connected. Import database.sql into XAMPP MySQL to load listings.') ?>;
+		marketFeedInner.appendChild(emptyState);
+	} else {
+		const marketGrid = document.createElement('div');
+		marketGrid.className = 'market-grid';
+		marketListings.forEach(function (listing) {
+			const category = String(listing.category || '').toLowerCase();
+			const filterCategory = category.includes('electronic') || category.includes('phone') ? 'electronics' : (category.includes('textbook') || category.includes('book') || category.includes('study') ? 'books' : (category.includes('hostel') || category.includes('furniture') ? 'hostel' : 'other'));
+			const itemUrl = 'item.php?id=' + encodeURIComponent(listing.id);
+			const card = document.createElement('article');
+			card.className = 'market-card';
+			card.dataset.marketCategory = filterCategory;
+			const imageBox = document.createElement('div');
+			imageBox.className = 'market-card-image';
+			const imageLink = document.createElement('a');
+			imageLink.href = itemUrl;
+			imageLink.setAttribute('aria-label', 'View ' + listing.title);
+			const image = document.createElement('img');
+			image.src = listing.image_url;
+			image.alt = listing.title;
+			image.loading = 'lazy';
+			imageLink.appendChild(image);
+			imageBox.appendChild(imageLink);
+			const condition = document.createElement('span');
+			condition.className = 'market-condition';
+			condition.textContent = listing.condition_label;
+			imageBox.appendChild(condition);
+			if (Number(listing.is_verified)) {
+				const verified = document.createElement('span');
+				verified.className = 'market-verified';
+				verified.textContent = '\u2713 Verified Student';
+				imageBox.appendChild(verified);
+			}
+			const content = document.createElement('div');
+			content.className = 'market-card-content';
+			const details = document.createElement('div');
+			const location = document.createElement('p');
+			location.className = 'market-location';
+			location.textContent = '\u{1F4CD} ' + listing.location_label;
+			const heading = document.createElement('h3');
+			const titleLink = document.createElement('a');
+			titleLink.href = itemUrl;
+			titleLink.textContent = listing.title;
+			heading.appendChild(titleLink);
+			details.append(location, heading);
+			const bottom = document.createElement('div');
+			bottom.className = 'market-card-bottom';
+			const priceWrap = document.createElement('div');
+			const priceLabel = document.createElement('span');
+			priceLabel.className = 'market-price-label';
+			priceLabel.textContent = 'Price';
+			const price = document.createElement('strong');
+			price.className = 'market-price';
+			price.textContent = 'KSh ' + Number(listing.price).toLocaleString('en-KE');
+			priceWrap.append(priceLabel, price);
+			const viewLink = document.createElement('a');
+			viewLink.className = 'market-details';
+			viewLink.href = itemUrl;
+			viewLink.textContent = 'View Details';
+			bottom.append(priceWrap, viewLink);
+			const addButton = document.createElement('button');
+			addButton.className = 'add-cart';
+			addButton.type = 'button';
+			addButton.dataset.id = 'catalog-' + listing.id;
+			addButton.dataset.title = listing.title;
+			addButton.dataset.price = listing.price;
+			addButton.dataset.image = listing.image_url;
+			addButton.dataset.category = listing.category;
+			addButton.textContent = 'Add to cart';
+			addButton.addEventListener('click', function () {
+				const cart = readCart();
+				const item = { id: addButton.dataset.id, title: addButton.dataset.title, price: Number(addButton.dataset.price), image: addButton.dataset.image, category: addButton.dataset.category };
+				if (!cart.some(function (saved) { return saved.id === item.id; })) { cart.push(item); localStorage.setItem(cartKey, JSON.stringify(cart)); }
+				addButton.textContent = 'Added to cart';
+				addButton.classList.add('added');
+				updateCartCount();
+			});
+			content.append(details, bottom, addButton);
+			card.append(imageBox, content);
+			marketGrid.appendChild(card);
+		});
+		marketFeedInner.appendChild(marketGrid);
+	}
+	marketFeed.appendChild(marketFeedInner);
+	const mainContent = document.getElementById('main-content');
+	const firstLegacyListings = document.getElementById('legacy-listings-0');
+	if (firstLegacyListings) firstLegacyListings.before(marketFeed);
+	document.querySelectorAll('.market-filter').forEach(function (button) {
+		button.addEventListener('click', function () {
+			const filter = button.dataset.marketFilter;
+			document.querySelectorAll('.market-filter').forEach(function (candidate) { candidate.classList.toggle('is-active', candidate === button); });
+			document.querySelectorAll('.market-card').forEach(function (card) { card.hidden = filter !== 'all' && card.dataset.marketCategory !== filter; });
+		});
+	});
 	const liveCatalog = document.querySelector('.listings-live');
 	if (liveCatalog) {
 		const params = new URLSearchParams(window.location.search);
@@ -175,8 +284,22 @@ function e(string $value): string
 		const toolbar = liveCatalog.querySelector('.catalog-toolbar');
 		if (toolbar) toolbar.insertAdjacentElement('beforebegin', filterBar);
 	}
+	const liveListingIds = <?= json_encode(array_column($listings, 'id'), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) ?>;
 	document.querySelectorAll('.listings-live .listing').forEach(function (card, index) {
 		const title = card.querySelector('h3').textContent.trim();
+		const itemLink = 'item.php?id=' + encodeURIComponent(liveListingIds[index]);
+		const listingImage = card.querySelector('.listing-image img');
+		const imageLink = document.createElement('a');
+		imageLink.href = itemLink;
+		imageLink.setAttribute('aria-label', 'View ' + title);
+		listingImage.parentNode.insertBefore(imageLink, listingImage);
+		imageLink.appendChild(listingImage);
+		const titleHeading = card.querySelector('.listing-body h3');
+		const titleLink = document.createElement('a');
+		titleLink.className = 'listing-title-link';
+		titleLink.href = itemLink;
+		titleLink.textContent = title;
+		titleHeading.replaceChildren(titleLink);
 		const priceMatch = card.querySelector('.price').textContent.match(/KSh\s*([\d,]+)/);
 		const priceText = priceMatch ? priceMatch[1].replace(/,/g, '') : '0';
 		const category = card.querySelector('.listing-meta span').textContent.trim();
@@ -184,7 +307,7 @@ function e(string $value): string
 		const button = document.createElement('button');
 		button.className = 'add-cart';
 		button.type = 'button';
-		button.dataset.id = 'catalog-' + index + '-' + title;
+		button.dataset.id = 'catalog-' + liveListingIds[index];
 		button.dataset.title = title;
 		button.dataset.price = priceText;
 		button.dataset.image = image;
@@ -224,6 +347,45 @@ function e(string $value): string
 		function applyQuickFilter(filter, clicked) { document.querySelectorAll('.category-filter').forEach(function (button) { button.classList.toggle('active', button === clicked); }); quickCards.forEach(function (card) { card.hidden = filter !== 'all' && card.dataset.category !== filter; }); }
 		document.querySelectorAll('.category-filter').forEach(function (button) { button.addEventListener('click', function (event) { if (button.tagName === 'A') event.preventDefault(); applyQuickFilter(button.dataset.category, button); quickSection.scrollIntoView({behavior:'smooth', block:'start'}); }); });
 	}
+	const sampleProductImages = <?= json_encode(array_column($products, 'image_url'), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) ?>;
+	document.querySelectorAll('.product-placeholder').forEach(function (placeholder, index) {
+		const image = document.createElement('img');
+		image.className = 'product-photo';
+		image.src = sampleProductImages[index];
+		image.alt = placeholder.getAttribute('aria-label').replace('Placeholder image for ', '');
+		image.loading = 'lazy';
+		const card = placeholder.closest('.product-card');
+		const sampleId = card.querySelector('.add-cart').dataset.id.replace('product-', '');
+		const imageLink = document.createElement('a');
+		imageLink.className = 'product-image-link';
+		imageLink.href = 'item.php?sample=' + encodeURIComponent(sampleId);
+		imageLink.setAttribute('aria-label', 'View ' + image.alt);
+		imageLink.appendChild(image);
+		placeholder.replaceWith(imageLink);
+		const heading = card.querySelector('h3');
+		const titleLink = document.createElement('a');
+		titleLink.className = 'product-title-link';
+		titleLink.href = imageLink.href;
+		titleLink.textContent = heading.textContent;
+		heading.replaceChildren(titleLink);
+	});
+	document.querySelectorAll('.quick-image').forEach(function (container, index) {
+		const image = document.createElement('img');
+		image.src = sampleProductImages[index];
+		image.alt = container.nextElementSibling.textContent.trim();
+		image.loading = 'lazy';
+		const itemLink = document.createElement('a');
+		itemLink.href = 'item.php?sample=' + (index + 1);
+		itemLink.setAttribute('aria-label', 'View ' + image.alt);
+		itemLink.appendChild(image);
+		container.replaceChildren(itemLink);
+		const heading = container.nextElementSibling;
+		const titleLink = document.createElement('a');
+		titleLink.className = 'quick-title-link';
+		titleLink.href = itemLink.href;
+		titleLink.textContent = heading.textContent;
+		heading.replaceChildren(titleLink);
+	});
 	const productFilters = document.querySelectorAll('[data-target]');
 	const productCards = document.querySelectorAll('#product-grid [data-category]');
 	const searchForm = document.querySelector('.search');
@@ -236,7 +398,7 @@ function e(string $value): string
 		function applySearch() {
 			const term = searchInput.value.trim().toLowerCase();
 			let matches = 0;
-			const searchableCards = document.querySelectorAll('#product-grid .product-card, .quick-card, .listings-live .listing');
+			const searchableCards = document.querySelectorAll('#product-grid .product-card, .quick-card, .listings-live .listing, .market-card');
 			searchableCards.forEach(function (card) {
 				const match = !term || card.textContent.toLowerCase().includes(term);
 				card.classList.toggle('search-match-hidden', !match);
