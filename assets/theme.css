@@ -1,0 +1,298 @@
+html.dark-theme {
+    color-scheme: dark;
+    --ink: #e5edf7;
+    --muted: #a7b4c6;
+    --paper: #090d16;
+    --white: #121a28;
+    --line: rgba(203, 213, 225, .14);
+    --teal: #63cfc1;
+    --teal-dark: #147d78;
+    --coral: #f07c63;
+    --orange: #f07c63;
+    --olive: #a4c7a7;
+    --shadow: 0 16px 38px rgba(0, 0, 0, .3);
+}
+
+html.light-theme {
+    color-scheme: light;
+    --ink: #142b38;
+    --muted: #60727a;
+    --paper: #f7faf8;
+    --white: #fff;
+    --line: #dce7e3;
+    --teal: #087f78;
+    --teal-dark: #075b59;
+    --coral: #f07c63;
+    --orange: #e65f2b;
+    --olive: #4e6e58;
+    --shadow: 0 18px 45px rgba(20, 43, 56, .1);
+}
+
+html.dark-theme body,
+body.dark-theme {
+    color: var(--ink);
+    background: var(--paper);
+}
+
+html.light-theme body,
+body.light-theme {
+    color: var(--ink);
+    background: var(--paper);
+}
+
+html.dark-theme header,
+html.dark-theme .top,
+html.dark-theme .topbar,
+body.dark-theme header,
+body.dark-theme .top,
+body.dark-theme .topbar {
+    color: var(--ink);
+    background: rgba(12, 19, 31, .94);
+    border-color: var(--line);
+}
+
+html.dark-theme footer,
+body.dark-theme footer {
+    color: #cbd5e1;
+    background: #070a11;
+}
+
+html.dark-theme .section,
+html.dark-theme .trust,
+html.dark-theme .quick-catalog,
+html.dark-theme .product-filter-section,
+html.dark-theme .market-feed,
+html.dark-theme .listings,
+body.dark-theme .section,
+body.dark-theme .trust,
+body.dark-theme .quick-catalog,
+body.dark-theme .product-filter-section,
+body.dark-theme .market-feed,
+body.dark-theme .listings {
+    color: var(--ink);
+    background-color: #0d1421;
+}
+
+html.dark-theme .category-grid .category,
+html.dark-theme .grid .category,
+html.dark-theme .listing,
+html.dark-theme .product-card,
+html.dark-theme .quick-card,
+html.dark-theme .market-card,
+html.dark-theme .card,
+html.dark-theme .shell,
+html.dark-theme .items,
+html.dark-theme .summary,
+html.dark-theme .photo-wrap,
+html.dark-theme .seller,
+body.dark-theme .category-grid .category,
+body.dark-theme .grid .category,
+body.dark-theme .listing,
+body.dark-theme .product-card,
+body.dark-theme .quick-card,
+body.dark-theme .market-card,
+body.dark-theme .card,
+body.dark-theme .shell,
+body.dark-theme .items,
+body.dark-theme .summary,
+body.dark-theme .photo-wrap,
+body.dark-theme .seller {
+    color: var(--ink);
+    background-color: #141e2d;
+    border-color: var(--line);
+    box-shadow: var(--shadow);
+}
+
+html.dark-theme .market-card,
+body.dark-theme .market-card {
+    background: rgba(20, 30, 45, .76);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+html.dark-theme .heading h1,
+html.dark-theme .heading h2,
+html.dark-theme .section-heading h2,
+html.dark-theme .market-feed-header h2,
+html.dark-theme .category strong,
+html.dark-theme .listing h3,
+html.dark-theme .product-card h3,
+html.dark-theme .quick-card h3,
+html.dark-theme .cart-item h2,
+html.dark-theme .summary h2,
+body.dark-theme .heading h1,
+body.dark-theme .heading h2,
+body.dark-theme .section-heading h2,
+body.dark-theme .market-feed-header h2,
+body.dark-theme .category strong,
+body.dark-theme .listing h3,
+body.dark-theme .product-card h3,
+body.dark-theme .quick-card h3,
+body.dark-theme .cart-item h2,
+body.dark-theme .summary h2 {
+    color: var(--ink);
+}
+
+html.dark-theme .hero,
+body.dark-theme .hero {
+    background-image: linear-gradient(110deg, rgba(3, 10, 25, .66), rgba(10, 29, 57, .28)), url("hero-shopping-black.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+html.dark-theme .hero:before,
+body.dark-theme .hero:before {
+    background: linear-gradient(90deg, rgba(3, 10, 25, .56), rgba(8, 26, 53, .22) 70%, rgba(10, 36, 68, .08));
+}
+
+html.dark-theme input,
+html.dark-theme select,
+html.dark-theme textarea,
+html.dark-theme .nav-search,
+html.dark-theme .catalog-toolbar,
+html.dark-theme .filter-bar,
+html.dark-theme .market-filter,
+body.dark-theme input,
+body.dark-theme select,
+body.dark-theme textarea,
+body.dark-theme .nav-search,
+body.dark-theme .catalog-toolbar,
+body.dark-theme .filter-bar,
+body.dark-theme .market-filter {
+    color: var(--ink);
+    background-color: #111b2b;
+    border-color: var(--line);
+}
+
+html.dark-theme input::placeholder,
+html.dark-theme textarea::placeholder,
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+    color: #8c9bb0;
+}
+
+html.dark-theme .market-location,
+html.dark-theme .market-price-label,
+html.dark-theme .listing-meta,
+html.dark-theme .seller,
+html.dark-theme .cart-item p,
+html.dark-theme .lead,
+html.dark-theme .fine,
+body.dark-theme .market-location,
+body.dark-theme .market-price-label,
+body.dark-theme .listing-meta,
+body.dark-theme .seller,
+body.dark-theme .cart-item p,
+body.dark-theme .lead,
+body.dark-theme .fine {
+    color: var(--muted);
+}
+
+html.dark-theme .market-card-content h3 a,
+html.dark-theme .market-price,
+html.dark-theme .price,
+html.dark-theme .item-price,
+body.dark-theme .market-card-content h3 a,
+body.dark-theme .market-price,
+body.dark-theme .price,
+body.dark-theme .item-price {
+    color: var(--ink);
+}
+
+html.dark-theme .google,
+html.dark-theme .photo-label,
+html.dark-theme .product-filter-button,
+html.dark-theme .quick-filter,
+html.dark-theme .status,
+body.dark-theme .google,
+body.dark-theme .photo-label,
+body.dark-theme .product-filter-button,
+body.dark-theme .quick-filter,
+body.dark-theme .status {
+    color: var(--ink);
+    background-color: #111b2b;
+    border-color: var(--line);
+}
+
+html.dark-theme .theme-toggle,
+body.dark-theme .theme-toggle,
+html.light-theme .theme-toggle,
+body.light-theme .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    color: var(--ink);
+    background: var(--white);
+    cursor: pointer;
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-1px);
+    border-color: var(--teal);
+}
+
+.theme-toggle svg {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+}
+
+html.light-theme body,
+body.light-theme {
+    background: var(--paper);
+}
+
+html.light-theme header,
+html.light-theme .top,
+body.light-theme header,
+body.light-theme .top {
+    color: var(--ink);
+    background: rgba(255, 255, 255, .94);
+}
+
+html.light-theme .hero,
+body.light-theme .hero {
+    background-image: linear-gradient(110deg, rgba(3, 10, 25, .38), rgba(10, 29, 57, .12)), url("hero-shopping-black.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+@media (max-width: 650px) {
+    .theme-toggle {
+        flex-basis: 38px;
+        width: 38px;
+        height: 38px;
+    }
+}
+
+.theme-toggle-floating {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+}
+
+html.dark-theme .status-error,
+body.dark-theme .status-error {
+    color: #fecaca;
+    background: rgba(127, 29, 29, .32);
+    border: 1px solid rgba(248, 113, 113, .3);
+}
+
+.brand-symbol {
+    display: block;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}

@@ -1,0 +1,12 @@
+USE campusmarket;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    google_sub VARCHAR(255) NULL UNIQUE,
+    phone VARCHAR(30) NULL UNIQUE,
+    email VARCHAR(255) NULL,
+    display_name VARCHAR(160) NOT NULL DEFAULT 'CampusMarket member',
+    auth_provider ENUM('google', 'phone') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);

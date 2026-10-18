@@ -73,9 +73,12 @@ if (!$item) {
         @media(max-width:760px){main{padding:26px 0 50px}.detail{grid-template-columns:1fr;gap:20px}.photo-wrap img{aspect-ratio:4/3}.detail-panel{padding:0}.title{font-size:1.8rem}}
         .photo-wrap img{object-fit:contain;background:#f1f3f2}
     </style>
+    <script>try{document.documentElement.classList.add(localStorage.getItem('campusmarket-theme')==='light'?'light-theme':'dark-theme')}catch(error){document.documentElement.classList.add('dark-theme')}</script>
+    <link rel="stylesheet" href="assets/theme.css">
+    <script src="assets/theme.js" defer></script>
 </head>
 <body>
-<header><nav class="container nav" aria-label="Main navigation"><a class="brand" href="index.php"><span class="brand-mark">M</span>CampusMarket</a><a class="back" href="index.php#student-products">&larr; Back to marketplace</a></nav></header>
+<header><nav class="container nav" aria-label="Main navigation"><a class="brand" href="index.php"><span class="brand-mark"><img class="brand-symbol" src="assets/brand-mark.svg" alt=""></span>CampusMarket</a><a class="back" href="index.php#student-products">&larr; Back to marketplace</a></nav></header>
 <main class="container">
 <?php if (!$item): ?>
     <section class="not-found"><h1>We couldn't find that item.</h1><p>It may have been removed or the link may be out of date.</p><a class="button" href="index.php#student-products">Browse the marketplace</a></section>

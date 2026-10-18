@@ -29,6 +29,17 @@ CREATE TABLE IF NOT EXISTS verification_codes (
     INDEX (expires_at)
 );
 
+CREATE TABLE IF NOT EXISTS users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    google_sub VARCHAR(255) NULL UNIQUE,
+    phone VARCHAR(30) NULL UNIQUE,
+    email VARCHAR(255) NULL,
+    display_name VARCHAR(160) NOT NULL DEFAULT 'CampusMarket member',
+    auth_provider ENUM('google', 'phone') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
 INSERT INTO listings (title, category, price, condition_label, location_label, distance_label, seller_name, seller_initials, image_url, status_label, detail_label) VALUES
 ('Calculus & Physics bundle', 'Textbooks', 5850, 'Like new', 'Textbooks', '0.4 mi', 'Nadia M.', 'NM', 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=700&q=80', 'Like new', 'for 3 books'),
 ('Olive reading chair', 'Furniture', 7800, 'Good condition', 'Furniture', '0.8 mi', 'David K.', 'DK', 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=700&q=80', 'Pickup today', 'negotiable'),
